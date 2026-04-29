@@ -1,6 +1,7 @@
 package hub;
 
 import devices.SmartDevice;
+import strategies.HomeModeStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,9 @@ public class HomeHub {
     // Marking as final ensures the list reference never changes
     private final List<SmartDevice> devices;
 
+    // 2. Add a field to store the current mode
+    private HomeModeStrategy currentMode;
+
     // as this is private no one can use new HomeHub()
     private HomeHub() {
         devices = new ArrayList<>();
@@ -26,6 +30,16 @@ public class HomeHub {
             instance = new HomeHub();
         }
         return instance;
+    }
+
+    public void setMode(HomeModeStrategy mode) {
+        this.currentMode = mode;
+        System.out.println("\n--- Switching Mode ---");
+
+        // This is the "Magic": The Hub tells the strategy to handle the devices
+        if (currentMode != null) {
+            currentMode.executeMode(this.devices);
+        }
     }
 
     public void addDevice(SmartDevice device) {

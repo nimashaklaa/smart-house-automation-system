@@ -1,6 +1,8 @@
 package devices;
 
-public class SmartLight extends SmartDevice{
+import automation.Observer;
+
+public class SmartLight extends SmartDevice implements Observer {
     private int brightness =100;
 
     public SmartLight(String name){
@@ -20,5 +22,12 @@ public class SmartLight extends SmartDevice{
         return this.brightness;
     }
 
+    @Override
+    public void update(String eventType){
+        if(eventType.equals("MOTION_DETECTED")){
+            System.out.println(getName() + ": Movement sensed! Turning on automatically.");
+            if (!isOn()) togglePower();
+        }
+    }
 
 }

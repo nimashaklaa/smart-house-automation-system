@@ -8,6 +8,8 @@ import devices.SmartLight;
 import devices.Thermostat;
 import hub.DeviceFactory;
 import hub.HomeHub;
+import strategies.EcoMode;
+import strategies.SecurityMode;
 
 public class Main {
     public static void main(String[] args) {
@@ -44,6 +46,18 @@ public class Main {
 
         System.out.println("--- Testing Undo ---");
         remote.pressUndo(); // The light turns off!
+
+        // 3. Testing Strategy Pattern (The "Smart Modes")
+        // This will automatically adjust the thermostat and lights we added above
+        System.out.println("\n--- Activating Smart Modes ---");
+
+        System.out.println("Switching to ECO MODE...");
+        homeHub.setMode(new EcoMode());
+        homeHub.showStatus();
+
+        System.out.println("\nSwitching to SECURITY MODE...");
+        homeHub.setMode(new SecurityMode());
+        homeHub.showStatus();
 
     }
 }
