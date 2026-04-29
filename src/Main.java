@@ -2,8 +2,10 @@
 
 import commands.Command;
 import commands.RemoteControl;
+import commands.SetTempCommand;
 import commands.TurnOnCommand;
 import devices.SmartLight;
+import devices.Thermostat;
 import hub.DeviceFactory;
 import hub.HomeHub;
 
@@ -32,5 +34,16 @@ public class Main {
 
         System.out.println("--- Testing Undo ---");
         remote.pressUndo(); // The light turns off!
+
+        Thermostat hallwayThermostat = (Thermostat) DeviceFactory.createDevice("THERMOSTAT","Hallway Thermostat");
+        homeHub.addDevice(hallwayThermostat);
+
+        Command setTemp = new SetTempCommand(hallwayThermostat, 34);
+        System.out.println("--- Using the Remote Control ---");
+        remote.pressButton(setTemp); // The light turns on!
+
+        System.out.println("--- Testing Undo ---");
+        remote.pressUndo(); // The light turns off!
+
     }
 }

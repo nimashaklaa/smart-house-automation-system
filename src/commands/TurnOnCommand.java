@@ -1,24 +1,24 @@
 package commands;
 
-import devices.SmartLight;
+import devices.SmartDevice;
 
 public class TurnOnCommand implements Command {
-    private final SmartLight smartLight;
+    private final SmartDevice device;
 
-    public TurnOnCommand(SmartLight smartLight){
-        this.smartLight = smartLight;
+    public TurnOnCommand(SmartDevice device){
+        this.device = device;
     }
 
     @Override
     public void execute() {
-        if(!smartLight.isOn()){
-            smartLight.togglePower();
+        if(!device.isOn()){
+            device.togglePower();
         }
     }
     @Override
     public void undo() {
-        if(smartLight.isOn()){
-            smartLight.togglePower();
+        if(device.isOn()){
+            device.togglePower();
         }
     }
 }

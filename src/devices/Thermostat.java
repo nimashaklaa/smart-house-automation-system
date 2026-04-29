@@ -12,4 +12,12 @@ public class Thermostat extends SmartDevice{
     public void performAction(){
         System.out.println("Thermostat " + getName() + " is set to " + temperature + "°C.");
     }
+
+    public int getTemperature(){
+        return this.temperature;
+    }
+
+    public void setTemperature(int temperature){
+        this.temperature=temperature;
+    }
 }
