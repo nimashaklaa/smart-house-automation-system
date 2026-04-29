@@ -12,5 +12,13 @@ public class SmartLight extends SmartDevice{
         System.out.print("Light " + getName() + " is shining at " + brightness + "% brightness.");
     }
 
+    public void setBrightness(int brightness){
+        this.brightness = brightness;
+    }
+
+    public int getBrightness(){
+        return this.brightness;
+    }
+
 
 }

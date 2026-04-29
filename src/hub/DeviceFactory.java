@@ -4,6 +4,7 @@ import devices.SmartDevice;
 import devices.SmartLight;
 import devices.SmartLock;
 import devices.Thermostat;
+// creational patterns
 
 public class DeviceFactory {
 
